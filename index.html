@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Notes</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="moment.min.js"></script>
+    <script src="main.js" defer></script>
+    <title>Notes</title>
+  </head>
+  <body>
+    <header><h1>Notes</h1></header>
+    <form class="form" id="note-form">
+      <label for="title-input">Title</label>
+      <input type="text" id="title-input" />
+      <label for="note-text">note</label>
+      <input type="text" id="note-text" />
+      <div>
+        <button type="submit">create note</button>
+      </div>
+    </form>
+  </body>
 </html>
