@@ -57,10 +57,9 @@ board.addEventListener("click", function(event){
 })
 
 function deleteCard(cardId){
-let cardToDelete = document.querySelector(
-  // figure out how to get id number here
+let cardToDelete = document.querySelector(`div[data-id="${cardId}]"`
 )
-fetch("http://localhost:3000/notes/${cardId}", {method: "DELETE"}).then(function(){document.querySelector("#board").removeChild(cardToDelete)})
+fetch(`http://localhost:3000/notes/${cardId}`, {method: "DELETE"}).then(function(){document.querySelector("#board").removeChild(cardToDelete)})
 }
 
 renderNotes()
