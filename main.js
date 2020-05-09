@@ -34,7 +34,8 @@ function renderNotes() {
       title.classList.add("title")
       title.innerHTML = `<h2>${item.noteTitle}</h2>`
       card.appendChild(title)
-      let deleteButton = document.createElement("button")
+      let deleteButton = document.createElement("span")
+      deleteButton.id = "delete"
       deleteButton.classList.add("delete")
       deleteButton.textContent = "Delete"
       card.appendChild(deleteButton)
@@ -45,6 +46,19 @@ function renderNotes() {
       board.appendChild(card)
     }
   })
+}
+
+board.addEventListener("click", function(event){
+  let targetEl = event.target
+  if(targetEl.matches("#delete")){
+    console.log("DELETE")
+    deleteCard(targetEl.parentElement.dataset.id)
+  }
+})
+
+function deleteCard(cardId){
+let cardToDelete = document.querySelector(`div[data-id="${cardId}"]`)
+fetch("http://localhost:3000/notes/${cardId}", {method: "DELETE"}).then(function(){document.querySelector("#board").removeChild(cardToDelete)})
 }
 
 renderNotes()
