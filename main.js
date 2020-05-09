@@ -34,6 +34,10 @@ function renderNotes() {
       title.classList.add("title")
       title.innerHTML = `<h2>${item.noteTitle}</h2>`
       card.appendChild(title)
+      let deleteButton = document.createElement("button")
+      deleteButton.classList.add("delete")
+      deleteButton.textContent = "Delete"
+      card.appendChild(deleteButton)
       let note = document.createElement("div")
       note.classList.add("note")
       note.innerHTML = `<p>${item.noteBody}</p>`
