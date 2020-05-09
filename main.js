@@ -22,44 +22,46 @@ function createNewNote(title, note) {
 }
 
 function renderNotes() {
-  fetch("http://localhost:3000/notes/", { method: "GET" }
-  ).then((res) => res.json()
-  ).then(function(data){
-    for (let item of data){
-
-      let card = document.createElement("div");
-      card.classList.add("card")
-      card.dataset.id = item.id
-      let title = document.createElement("div")
-      title.classList.add("title")
-      title.innerHTML = `<h2>${item.noteTitle}</h2>`
-      card.appendChild(title)
-      let deleteButton = document.createElement("span")
-      deleteButton.id = "delete"
-      deleteButton.classList.add("delete")
-      deleteButton.textContent = "Delete"
-      card.appendChild(deleteButton)
-      let note = document.createElement("div")
-      note.classList.add("note")
-      note.innerHTML = `<p>${item.noteBody}</p>`
-      card.appendChild(note)
-      board.appendChild(card)
-    }
-  })
+  fetch("http://localhost:3000/notes/", { method: "GET" })
+    .then((res) => res.json())
+    .then(function (data) {
+      for (let item of data) {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.id = item.id;
+        let title = document.createElement("div");
+        title.classList.add("title");
+        title.innerHTML = `<h2>${item.noteTitle}</h2>`;
+        card.appendChild(title);
+        let deleteButton = document.createElement("span");
+        deleteButton.id = "delete";
+        deleteButton.classList.add("delete");
+        deleteButton.textContent = "Delete";
+        card.appendChild(deleteButton);
+        let note = document.createElement("div");
+        note.classList.add("note");
+        note.innerHTML = `<p>${item.noteBody}</p>`;
+        card.appendChild(note);
+        board.appendChild(card);
+      }
+    });
 }
 
-board.addEventListener("click", function(event){
-  let targetEl = event.target
-  if(targetEl.matches("#delete")){
-    console.log("DELETE")
-    deleteCard(targetEl.parentElement.dataset.id)
+board.addEventListener("click", function (event) {
+  let targetEl = event.target;
+  if (targetEl.matches("#delete")) {
+    console.log("DELETE");
+    deleteCard(targetEl.parentElement.dataset.id);
   }
-})
+});
 
-function deleteCard(cardId){
-let cardToDelete = document.querySelector(`div[data-id="${cardId}]"`
-)
-fetch(`http://localhost:3000/notes/${cardId}`, {method: "DELETE"}).then(function(){document.querySelector("#board").removeChild(cardToDelete)})
+function deleteCard(cardId) {
+  let cardToDelete = document.querySelector(`div[data-id="${cardId}]"`);
+  fetch(`http://localhost:3000/notes/${cardId}`, { method: "DELETE" }).then(
+    function () {
+      document.querySelector("#board").removeChild(cardToDelete);
+    }
+  );
 }
 
-renderNotes()
+renderNotes();
