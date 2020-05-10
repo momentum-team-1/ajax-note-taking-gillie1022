@@ -31,18 +31,25 @@ function renderNotes() {
         card.dataset.id = item.id;
         let title = document.createElement("div");
         title.classList.add("title");
+        title.id = "title" + card.dataset.id;
         title.innerHTML = `<h2>${item.noteTitle}</h2>`;
         card.appendChild(title);
-        let deleteButton = document.createElement("span");
-        deleteButton.id = "delete";
-        deleteButton.classList.add("delete");
-        deleteButton.textContent = "Delete";
-        card.appendChild(deleteButton);
         let note = document.createElement("div");
         note.classList.add("note");
         note.innerHTML = `<p>${item.noteBody}</p>`;
         card.appendChild(note);
         board.appendChild(card);
+        let deleteButton = document.createElement("span");
+        deleteButton.id = "delete";
+        deleteButton.classList.add("delete");
+        deleteButton.textContent = "Delete";
+        card.appendChild(deleteButton);
+        let editButton = document.createElement("span");
+        editButton.id = "edit";
+        editButton.classList.add("edit");
+        editButton.textContent = "Edit";
+        card.appendChild(editButton);
+        
       }
     });
 }
@@ -62,6 +69,22 @@ function deleteCard(cardId) {
       document.querySelector("#board").removeChild(cardToDelete);
     }
   );
+}
+board.addEventListener("click", function(event){
+  let targetEl = event.target;
+  if (targetEl.matches("#edit")){
+    console.log("EDIT");
+    editCard()
+  }
+})
+
+
+function editCard(){
+ let card = document.querySelector(".card")
+ let title = document.querySelector(".title")
+ let editTitleBox = document.createElement("input")
+ editTitleBox.setAttribute("placeholder", title.firstChild.textContent)
+ title.replaceChild(editTitleBox, title.firstChild)
 }
 
 renderNotes();

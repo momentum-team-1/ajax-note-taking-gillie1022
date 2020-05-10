@@ -1,0 +1,23 @@
+#board {
+  display: flex;
+}
+.card {
+  margin: 1vw;
+  display: flex;
+  flex-wrap: wrap;
+  width: 20%;
+  background-color: aqua;
+}
+
+.title {
+  width: 60%;
+}
+
+span {
+  width: 15%;
+  margin: 0.2vw;
+  padding: 0.2vw;
+  background-color: dimgray;
+  color: white;
+  cursor: pointer;
+}
