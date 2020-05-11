@@ -17,10 +17,11 @@
 }
 
 span {
-  width: 15%;
+  width: 25%;
   margin: 0.2vw;
   padding: 0.2vw;
   background-color: dimgray;
   color: white;
   cursor: pointer;
+  font-size: 1.5vw;
 }
